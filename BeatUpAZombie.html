@@ -1,0 +1,116 @@
+                       <!-- 🧟 BEAT UP A ZOMBIE V0.01🧟 -->
+
+                     <!-- 📝 CODED ENTIRELY BY MGBCRAFT 📝 -->
+
+<!-- ⚠️ If you are accessing this file and you are not MGBcraft or Bosha, then   please leave, this is private! ⚠️ -->
+
+<!-- HTML: -->
+
+<!-- Style -->
+
+<style>
+  h2 {
+		color: #000000;
+    font-family: Comic Sans MS;
+    text-shadow: 2px 2px 1px #792D2D;
+  }
+  body {
+		background: linear-gradient(#FFB4B4, #FF0000);
+  }
+  button {
+    font-size: 20px;
+	}
+  p  {
+ 	  color: #000000;
+    font-family: Comic Sans MS;
+    text-shadow: 1px 1.5px 0px #A82121;
+  }
+  img {
+		position: absolute;
+    top: 200px; /* Adjust the top position */
+    left: 600px; /* Adjust the left position */
+	}
+</style>
+
+<!-- Elements -->
+
+<h2>🧟 Beat up a Zombie 🧟</h2>
+<p id = "healthText"> ❤️ Health: 0 </p>
+<p id = "levelText"> 🌎 Level: 0 </p>
+<p id = "damageText"> ⚔️ Damage: 2 </p>
+<p id = "moneyText"> 💵 Money: 0 </p>
+<button id="punchButton" onclick="punch()">👊Punch👊</button>
+<button id="upgradeButton" onclick="upgrade()">⬆️Upgrade⬆️</button>
+<img id = "zombieImage"
+src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Minecraft_Zombie.png"
+	width="300"
+	height="400"
+/>
+
+<!-- JAVA: -->
+
+<script>
+  // Variables
+const healthLabel = document.getElementById('healthText');
+const levelLabel = document.getElementById('levelText');
+const damageLabel = document.getElementById('damageText');
+const moneyLabel = document.getElementById('moneyText');
+const punchButton = document.getElementById("punchButton");
+const upgradeButton = document.getElementById("upgradeButton");
+const zombie = document.getElementById("zombieImage");
+
+let health = 0;
+let maxHealth = 100;
+let money = 0;
+let nextUpgradeCost = 15;
+let damage = 2;
+let level = 1;
+
+health = maxHealth;
+
+// Change the text of hungerLabel and moneyLabel
+function updateText() {
+  healthLabel.textContent = "❤️ Health: " + health + "/" + maxHealth;
+  levelLabel.textContent = "🌎 Level: " + level;
+  moneyLabel.textContent = "💵 Money: " + money;
+  damageLabel.textContent = "⚔️ Damage: " + damage;
+  upgradeButton.textContent = "Upgrade Punch - $" + nextUpgradeCost;
+}
+  
+function reset() {
+  maxHealth = maxHealth * 2;
+  health = maxHealth;
+  updateText()
+}
+  
+setTimeout(function() {
+  zombie.style.top = "200";
+}, 1000);
+  
+function hitRecoil() {
+  zombie.style.top = "230";
+  setTimeout()
+}
+  
+function punch() {
+  health = health - damage;
+  updateText()
+  if (health <= 0) {
+    money += 15 * level;
+    level += 1;
+    reset()
+  }
+}
+  
+function upgrade() {
+  if (money >= nextUpgradeCost) {
+    money -= nextUpgradeCost
+  	damage = damage * 2;
+    nextUpgradeCost = nextUpgradeCost * 2
+  	updateText()
+  }
+}
+
+updateText()
+
+</script>
