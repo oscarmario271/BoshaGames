@@ -1,0 +1,121 @@
+                        <!-- 🐶 PET SIMULATER V0.02 🐶 -->
+
+                     <!-- 📝 CODED ENTIRELY BY MGBCRAFT 📝 -->
+
+<!-- ⚠️ If you are accessing this file and you are not MGBcraft or Bosha, then please leave, this is private! ⚠️ -->
+
+<!-- HTML: -->
+
+<!-- Style -->
+
+<style>
+	h2 {
+		color: #FFFFFF;
+    font-family: Comic Sans MS;
+    text-shadow: 2px 2px 1px #2D4C79;
+  }
+	body {
+		background: linear-gradient(#B4DFFF, #00A3FF);
+  }
+  p {
+  	font-size: 25px;
+		color: #000000;
+    font-family: Comic Sans MS;
+    font-weight: bold;
+    text-shadow: 1px 3px 2px #2D4C79;
+	}
+  button {
+    font-size: 20px;
+	}
+  img {
+		position: absolute;
+    top: 250px; /* Adjust the top position */
+    left: 600px; /* Adjust the left position */
+	}
+</style>
+
+<!-- Elements -->
+
+<h2>🐶 Pet Simulator 🐶</h2>
+<hr>
+<p id="moneyText"> Placeholder </p>
+<p id="hungerText"> Placeholder: 0 </p>
+<p id="foodLevelText"> Placeholder </p>
+<button id="feedButton" onclick="feed()">🥄Feed Pet</button>
+<button id="upgradeButton" onclick="upgrade()">Upgrade Food</button>
+<img
+src="https://uploads.onecompiler.io/42thc5u6b/44jur7phv/dog_PNG50348.png"
+	width="300"
+	height="300"
+/>
+
+<!-- Sounds -->
+
+<audio id="gainMoney" src="https://pixabay.com/sound-effects/film-special-effects-pop-402324/"></audio>
+
+<!-- JAVA: -->
+
+<script>
+// Variables
+const moneyLabel = document.getElementById('moneyText');
+const hungerLabel = document.getElementById('hungerText'); 
+const foodLevelLabel = document.getElementById('foodLevelText');
+const upgradeButton = document.getElementById('upgradeButton');
+
+let hunger = 0;
+let money = 0;  
+let foodLevel = 0;
+let foodLevelCost = 50;
+
+// Change the text of hungerLabel and moneyLabel
+function updateText() {
+  hungerLabel.textContent = "🍔 Stamina: " + hunger;
+  moneyLabel.textContent = "💵 Money: " + money;
+  foodLevelLabel.textContent = "📉 Food Level: " + foodLevel;
+  upgradeButton.textContent = "⬆️ Upgrade Food - $" + foodLevelCost;
+}
+  
+// Change the value of the hunger
+function feed() {
+	hunger += 1 + foodLevel;
+	updateText()
+}
+  
+function upgrade() {
+  if (money >= foodLevelCost) {
+    money -= foodLevelCost
+    foodLevelCost = foodLevelCost * 2
+		foodLevel = foodLevel + 1
+    updateText()
+  }
+}
+
+
+// Looping function
+function loopWithDelay() {
+	let counter = 0;
+
+	function iteration() {
+
+		// Continue looping if the condition is met
+		if (counter < counter + 1) {
+			setTimeout(iteration, 1500); // Delay of 1 second
+      money += Math.round(hunger / 10);
+      document.getElementById('gainMoney').play();
+      updateText()
+      
+      if (hunger > 0) {
+        hunger -= 1 * (foodLevel + 1)
+      }
+		}
+	}
+
+	iteration(); // Start the loop
+}
+
+updateText();
+loopWithDelay();
+
+</script>
+
+<!-- END -->
