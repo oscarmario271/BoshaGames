@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pet Simulator</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Fredoka+One"
+      rel="stylesheet"
+    />
+    <style>
+      h2 {
+        color: #FFFFFF;
+        font-family: Fredoka One;
+      }
+      body {
+        background: #00D5FF;
+      }
+      p {
+        color: #000000;
+        font-family: Comic Sans MS;
+        font-weight: bold;
+      }
+      button {
+        font-size: 30px; /* OSCAR this one works better */
+      }
+
+      img {
+        position: absolute;
+        top: 250px; /* Adjust the top position */
+        left: 600px; /* Adjust the left position */
+      }
+      #feedBtn {
+      	background: yellow;
+      }
+      #exerciseBtn {
+      	background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🐶 Pet Simulator 🐶</h2>
+    <img
+      src="https://uploads.onecompiler.io/42thc5u6b/44jur7phv/dog_PNG50348.png"
+      width="300"
+      height="300"
+    />
+    <button id="feedBtn" onclick="feedFunction()">😋 Feed Pet 😋</button>
+    <button id="exerciseBtn" onclick="exerciseFunction()">💪🏽 Exercise Pet 💪🏽</button>
+    
+    <p id="hunger"> 🍔 Hunger: </p>
+    <p id="money"> 💵 Money: </p>
+    <p id="status"></p>
+    
+<script type="module">
+  
+// Oscar, if you see this that means im recoding the entire thing myself because this is broken. | UPDATE - 18:03 - Recoding done, check BoshaChat for more information. | Okay, I fixed the function that doesn't do anything. | Go on BoshaChat, I made a new page. Please go to https://syncfiddle.net/fiddle/-OpnBsUv5vwOfkvPLuv_ to enter it
+
+const moneyLabel = document.getElementById('money');
+const hungerLabel = document.getElementById('hunger');
+const statusLabel = document.getElementById('status');
+ 
+let hunger = 0;
+let money = 50;
+
+window.feedFunction = async function() {
+  if (hunger > 0 && money >= 5) {
+    hunger--;
+    for (let i = 0; i < 5; i++) {
+      money--;
+    }
+  } else {
+    alert("Not enough hunger or money!");
+  }
+}
+  
+window.exerciseFunction = async function() {
+  if (hunger > 5) {
+    alert("Too hungry!");
+    return;
+  } else {
+    for (let i = 0; i < 2; i++) {
+      hunger++;
+    }
+  }
+}
+  
+setInterval(() => {
+  if (hunger < 10) {
+    for (let i = 0; i < 2; i++) {
+      hunger++;
+    }
+    for (let i = 0; i < 10; i++) {
+      money++
+    }
+  } else {
+    alert("Your pet died.");
+  }
+}, 10000);
+  
+setInterval(() => {
+  hungerLabel.textContent = "🍔 Hunger: " + hunger;
+  moneyLabel.textContent = "💵 Money: " + money;
+}, 100);
+</script>
+  </body>
+</html>
