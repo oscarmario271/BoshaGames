@@ -19,10 +19,18 @@
         text-shadow: 2px 2px 1px #ac8830;
         font-size: 30px;
       }
-      button {
+      button.main {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         background: linear-gradient(#ffffff, #282727F);
         font-size: 30px;
+        border: solid;
+        border-radius: 10px;
+      }
+      button {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        background: linear-gradient(#ffffff, #282727F);
+        border: solid;
+        border-radius: 10px;
       }
       #authBox {
         margin: auto;
@@ -35,7 +43,7 @@
   </head>
   <body>
     <div id="authBox">
-    <h1>Login / Signup</h1>
+    <h2>Login / Signup</h2>
     <input id="username" placeholder="Username"><br><br>
     <input id="password" type="password" placeholder="Password"><br><br>
     <button onclick="login()">Login</button><button onclick="signup()">Signup</button>
@@ -45,9 +53,9 @@
     <h2>BoshaGames</h2>
     <hr />
     <p class="main">Games:</p>
-    <button onclick="petsim()">Pet Simulator</button>
-    <button onclick="BeatUpAZombie()">Beat up a Zombie</button>
-    <button onclick="boshapetsim()">Bosha Pet Simulator</button>
+    <button class="main" onclick="petsim()">Pet Simulator</button>
+    <button class="main" onclick="BeatUpAZombie()">Beat up a Zombie</button>
+    <button class="main" onclick="boshapetsim()">Bosha Pet Simulator</button>
     </div>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
