@@ -1,1 +1,45 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BoshaGames Hub</title>
+    <style>
+      h2 {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        color: #00a0ff;
+        text-shadow: 2px 3px 1px #ac8830;
+        font-size: 40px;
+      }
+      body {
+        background: #ff9000;
+      }
+      p {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        color: #000000;
+        text-shadow: 2px 2px 1px #ac8830;
+        font-size: 30px;
+      }
+      button {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        background: linear-gradient(#ffffff, #282727F);
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>BoshaGames</h2>
+    <hr />
+    <p>Games:</p>
+    <p>
+      <button onclick="petsim()">Pet Simulator</button>
+      <button onclick="boshapetsim()">Bosha Pet Simulator</button>
+      <script>
+        window.petsim = async function () {
+          window.location.href("/BoshaGames/PetSimulator/");
+        };
+        window.boshapetsim = async function () {
+          window.location.href("/BoshaGames/BoshaPetSim/");
+        };
+      </script>
+    </p>
+  </body>
+</html>
