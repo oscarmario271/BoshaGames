@@ -25,23 +25,23 @@
         font-size: 30px;
       }
       #authBox {
-        text-align: center;
         margin: auto;
+        text-align: center;
       }
-      #err {
+      #loginErr {
         color: red;
       }
     </style>
   </head>
   <body>
-    <div id="authBox" style="display:flex;">
+    <div id="authBox">
     <h2>Login / Signup</h2>
     <input id="username" placeholder="Username"><br><br>
     <input id="password" type="password" placeholder="Password"><br><br>
     <button onclick="login()">Login</button><button onclick="signup()">Signup</button>
     <p id="loginErr"></p>
     </div>
-    <div id="hub" style="display:none;">
+    <div id="hub" style="display:none; width:100%;">
     <h2>BoshaGames</h2>
     <hr />
     <p>Games:</p>
