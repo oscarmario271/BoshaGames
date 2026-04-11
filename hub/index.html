@@ -66,17 +66,16 @@
   const auth = getAuth(app);
 
   const username = document.getElementById("username");
-  const email = username.value + "@boshagames.co.uk";
   const password = document.getElementById("password");
   const loginErr = document.getElementById("loginErr");
   const authBox = document.getElementById("authBox");
   const hubDiv = document.getElementById("hub");
 
   window.login = function () {
-    signInWithEmailAndPassword(auth, email, password.value).catch(err => loginErr.innerText = err.message);
+    signInWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
   }
   window.signup = function () {
-    createUserWithEmailAndPassword(auth, email, password.value).catch(err => loginErr.innerText = err.message);
+    createUserWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
   }
   onAuthStateChanged(auth, async user => {
     if (user) {
