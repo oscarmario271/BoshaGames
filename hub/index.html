@@ -13,7 +13,7 @@
       body {
         background: #ff9000;
       }
-      p {
+      p.main {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         color: #000000;
         text-shadow: 2px 2px 1px #ac8830;
@@ -35,7 +35,7 @@
   </head>
   <body>
     <div id="authBox">
-    <h2>Login / Signup</h2>
+    <h1>Login / Signup</h1>
     <input id="username" placeholder="Username"><br><br>
     <input id="password" type="password" placeholder="Password"><br><br>
     <button onclick="login()">Login</button><button onclick="signup()">Signup</button>
@@ -44,7 +44,7 @@
     <div id="hub" style="display:none; width:100%;">
     <h2>BoshaGames</h2>
     <hr />
-    <p>Games:</p>
+    <p class="main">Games:</p>
     <button onclick="petsim()">Pet Simulator</button>
     <button onclick="BeatUpAZombie()">Beat up a Zombie</button>
     <button onclick="boshapetsim()">Bosha Pet Simulator</button>
