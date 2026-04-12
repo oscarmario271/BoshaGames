@@ -90,12 +90,9 @@
   window.logout = async function () {
     signOut(auth);
   }
-  window.signup = async function () {
+  window.signup = function () {
     console.log(username.value + "@boshagames.co.uk");
     createUserWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
-    await setDoc(doc(db, "users", currentUser.uid), {
-      points: 0
-    });
   }
   onAuthStateChanged(auth, async user => {
     if (user) {
@@ -127,6 +124,9 @@
     window.location.href = "/BoshaGames/BeatUpAZombie/";
   };
   window.reward = async function (amount) {
+    await setDoc(doc(db, "users", user.uid), {
+      points: 0
+    }, { merge: false });
     await updateDoc(doc(db, "users", currentUser.uid), {
       points: increment(amount)
     });
