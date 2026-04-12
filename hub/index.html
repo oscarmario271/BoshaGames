@@ -55,12 +55,12 @@
     <button class="main" onclick="BeatUpAZombie()">Beat up a Zombie</button>
     <button class="main" onclick="boshapetsim()">Bosha Pet Simulator</button><br>
     <button onclick="logout()">Logout</button>
-    <button onclick="reward(10)">Reward</button>
+    <button onclick="reward(10, true)">Daily Reward</button>
     </div>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
-  import { getFirestore, doc, updateDoc, increment, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+  import { getFirestore, doc, updateDoc, increment, onSnapshot, setDoc, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
   
   const firebaseConfig = {
     apiKey: "AIzaSyBLKhmEMHtArdFhcHAKceCPGtY0DT__ulY",
@@ -123,10 +123,30 @@
   window.BeatUpAZombie = async function () {
     window.location.href = "/BoshaGames/BeatUpAZombie/";
   };
-  window.reward = async function (amount) {
-    await setDoc(doc(db, "users", currentUser.uid), {
-      points: 10
-    }, { merge: false });
+  window.reward = async function (amount, daily) {
+    const snap = await getDoc(doc(db, "users", currentUser.uid));
+    if (!snap.exists()) {
+      await setDoc(doc(db, "users", currentUser.uid), {
+        points: 10,
+      });
+    }
+    if (daily) {
+      snap = await getDoc(doc(db, "users", currentUser.uid));
+      if (snap.exists()) {
+        const data = snap.data();
+        if (data.lastClaim) {
+          const lastClaimDate = data.lastClaim.toDate();
+          const now = new Date();
+          const diffMs = now - lastClaimDate;
+          const hours = diffMs / (1000 * 60 * 60);
+
+          if (hours < 24) return;
+        }
+      }
+      await setDoc(doc(db, "users", currentUser.uid), {
+        lastClaim: serverTimestamp()
+      }, { merge: true });
+    }
     await updateDoc(doc(db, "users", currentUser.uid), {
       points: increment(amount)
     });
