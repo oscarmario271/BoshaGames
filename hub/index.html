@@ -125,7 +125,7 @@
   };
   window.reward = async function (amount) {
     await setDoc(doc(db, "users", currentUser.uid), {
-      points: 0
+      points: 10
     }, { merge: false });
     await updateDoc(doc(db, "users", currentUser.uid), {
       points: increment(amount)
