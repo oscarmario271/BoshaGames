@@ -24,10 +24,14 @@
       }
       button {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
-        background: linear-gradient(#ffffff, #282727F);
+        background: linear-gradient(#ffffff, #282727);
         padding: 10px;
         border: solid;
         border-radius: 10px;
+      }
+      #authBox {
+        margin: auto;
+        text-align: center;
       }
       #loginErr {
         color: red;
@@ -74,6 +78,8 @@
   const authBox = document.getElementById("authBox");
   const hubDiv = document.getElementById("hub");
 
+  let currentUser = null;
+
   window.login = function () {
     console.log(username.value + "@boshagames.co.uk");
     signInWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
@@ -87,10 +93,12 @@
   }
   onAuthStateChanged(auth, async user => {
     if (user) {
+      currentUser = user;
       authBox.style.display = "none";
-      hubDiv.style.display = "flex";
+      hubDiv.style.display = "block";
     } else {
-      authBox.style.display = "flex";
+      currentUser = null;
+      authBox.style.display = "block";
       hubDiv.style.display = "none";
     }
   });
@@ -104,17 +112,19 @@
   window.BeatUpAZombie = async function () {
     window.location.href = "/BoshaGames/BeatUpAZombie/";
   };
-  window.reward = async function () {
-await fetch("https://boshagames.oscarmario271271.workers.dev/", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    uid: user.uid
-  })
-});
-  }
+window.reward = async function () {
+  if (!currentUser) return;
+
+  await fetch("https://boshagames.oscarmario271271.workers.dev/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      uid: currentUser.uid
+    })
+  });
+};
   </script>
   </body>
 </html>
