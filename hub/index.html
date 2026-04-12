@@ -90,7 +90,7 @@
   window.logout = async function () {
     signOut(auth);
   }
-  window.signup = function () {
+  window.signup = async function () {
     console.log(username.value + "@boshagames.co.uk");
     createUserWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
     await setDoc(doc(db, "users", currentUser.uid), {
