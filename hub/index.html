@@ -124,7 +124,7 @@
     window.location.href = "/BoshaGames/BeatUpAZombie/";
   };
   window.reward = async function (amount) {
-    await setDoc(doc(db, "users", user.uid), {
+    await setDoc(doc(db, "users", currentUser.uid), {
       points: 0
     }, { merge: false });
     await updateDoc(doc(db, "users", currentUser.uid), {
