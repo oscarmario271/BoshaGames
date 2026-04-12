@@ -48,11 +48,12 @@
     <p class="main">Games:</p>
     <button class="main" onclick="petsim()">Pet Simulator</button>
     <button class="main" onclick="BeatUpAZombie()">Beat up a Zombie</button>
-    <button class="main" onclick="boshapetsim()">Bosha Pet Simulator</button>
+    <button class="main" onclick="boshapetsim()">Bosha Pet Simulator</button><br>
+    <button onclick="logout()">Logout</button>
     </div>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
   
   const firebaseConfig = {
     apiKey: "AIzaSyBLKhmEMHtArdFhcHAKceCPGtY0DT__ulY",
@@ -75,6 +76,9 @@
   window.login = function () {
     console.log(username.value + "@boshagames.co.uk");
     signInWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
+  }
+  window.logout = async function () {
+    signOut(auth);
   }
   window.signup = function () {
     console.log(username.value + "@boshagames.co.uk");
