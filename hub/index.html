@@ -50,6 +50,7 @@
     <button class="main" onclick="BeatUpAZombie()">Beat up a Zombie</button>
     <button class="main" onclick="boshapetsim()">Bosha Pet Simulator</button><br>
     <button onclick="logout()">Logout</button>
+    <button onclick="reward()">Reward</button>
     </div>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
@@ -103,6 +104,17 @@
   window.BeatUpAZombie = async function () {
     window.location.href = "/BoshaGames/BeatUpAZombie/";
   };
+  window.reward = async function () {
+await fetch("https://boshagames.oscarmario271271.workers.dev/", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    uid: user.uid
+  })
+});
+  }
   </script>
   </body>
 </html>
