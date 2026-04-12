@@ -93,7 +93,7 @@
   window.signup = function () {
     console.log(username.value + "@boshagames.co.uk");
     createUserWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
-    await setDoc(doc(db, "users", user.uid), {
+    await setDoc(doc(db, "users", currentUser.uid), {
       points: 0
     });
   }
