@@ -77,9 +77,11 @@
   const hubDiv = document.getElementById("hub");
 
   window.login = function () {
+    console.log(username.value + "@boshagames.co.uk");
     signInWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
   }
   window.signup = function () {
+    console.log(username.value + "@boshagames.co.uk");
     createUserWithEmailAndPassword(auth, username.value + "@boshagames.co.uk", password.value).catch(err => loginErr.innerText = err.message);
   }
   onAuthStateChanged(auth, async user => {
